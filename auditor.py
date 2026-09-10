@@ -8,8 +8,12 @@ while True:
     if user_input == "quit":  
         break
 
-    stock_quantity += int(user_input)
-    print("Current inventory count is:",stock_quantity)
+    #Handle invalid input
+    if user_input.isdigit():
+        stock_quantity += int(user_input)
+        print("Current inventory count is:",stock_quantity)
+    else:
+        print("Error! Please input whole numbers!\n")
 
-    print(type(stock_quantity))
+
 
