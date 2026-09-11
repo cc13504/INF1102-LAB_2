@@ -7,9 +7,8 @@ while True:
     user_input = input("Enter stock quantity.\n")
 
     if user_input.lower() == "quit":
-     print("The total Units Processed is {}and number of Failed/Rejected Entries is:{} \n".format(stock_quantity, error_count) )
+     print("The total Units Processed is {} and number of Failed/Rejected Entries is {} \n".format(stock_quantity, error_count) )
      break
-
 
     if user_input.isdigit():
         stock_quantity += int(user_input)
