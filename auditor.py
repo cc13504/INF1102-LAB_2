@@ -1,4 +1,4 @@
-#create variable stock quantity and set to zero
+#Create Stock Quantity and Error Count
 stock_quantity = 0
 error_count = 0
 
@@ -8,7 +8,7 @@ while True:
 
 
     if user_input.lower() == "quit":
-     print("The total Units Processed is {} and number of Failed/Rejected Entries is {} \n".format(stock_quantity, error_count) )
+     print("The total Units Processed is {} and number of Failed/Rejected Entries is {}. \n".format(stock_quantity, error_count) )
      break
 
     if user_input.isdigit():
@@ -17,8 +17,8 @@ while True:
 
         if int(user_input) > 500: 
              print("Alert! Total inventory has exceeded 500units!")
-             break 
-        
+             break     
+    
     else:
         print("Error! Please input positive whole numbers only!\n")
         error_count += 1
