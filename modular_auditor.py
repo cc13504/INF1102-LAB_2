@@ -1,41 +1,58 @@
-#Create Stock Quantity and Error Count
-stock_quantity = 0
+#Global Contants
+MAX_CAPACITY = 500
+TAX_RATE = 0.1 # 10% tax rate
+
+#local variables
 user_input = 0
+current_total = 0
+error_count = 0
 
 #Functions
-
 def get_valid_input():
     user_input = input("Enter stock quantity or 'quit' to exit.\n")
 
     if user_input.lower() == "quit":
-        print("The total Units Processed is {} and number of Failed/Rejected Entries is {}. \n".format(stock_quantity, error_count) )
+       return (user_input)
 
     if user_input.isdigit():
-        process_delivery(user_input)
-    
+        return int(user_input)
     else:
-        print("Error! Please input positive whole numbers only!\n")
+        return None
+        
+def error_validation():
+    print("Please input positive whole numbers only!")
 
-
-def process_delivery(user_input):
-    current_total = int(user_input)
-    new_value = current_total + int(user_input)
-
-    print(new_value)
+def process_delivery(new_total, user_input):
+    new_total += int(user_input)
+    print("Current Inventory Count Is:" ,new_total)
+    return new_total
     
 def calculate_tax(amount):
-    return()
+    tax = amount * TAX_RATE
+    return tax
 
-def generate_report(stock_quantity, error_count):
-    return ()
+def generate_report(total_units, failed_attempts):
+    print("Thank you")
 
-#Requesting user to input stock quantity until user types quit
-#Create Stock Quantity and Error Count
 
-#Requesting user to input stock quantity until user types quit
 while True:
+
+    user_input = get_valid_input()
+
+    if user_input == "quit":
     
-    get_valid_input()
+       break
+
+    elif user_input is None:
+        error_validation()
+        error_count += 1
+
+    else:
+        current_total = process_delivery(current_total, user_input)
+        tax_result = calculate_tax(user_input)
+
+
+
 
     
     
