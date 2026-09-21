@@ -31,8 +31,8 @@ def calculate_tax(amount):
     tax = amount * TAX_RATE
     return tax
 
-def generate_report(total_units, failed_attempts):
-    print("Thank you")
+def generate_report(total_units, error_count):
+    print(f"Total Units Processed: {total_units}\nNumber of Failed Entries: {error_count}\n ")
 
 
 while True:
@@ -40,7 +40,7 @@ while True:
     user_input = get_valid_input()
 
     if user_input == "quit":
-    
+       generate_report (current_total, error_count)
        break
 
     elif user_input is None:
@@ -50,6 +50,8 @@ while True:
     else:
         current_total = process_delivery(current_total, user_input)
         tax_result = calculate_tax(user_input)
+
+    
 
 
 
