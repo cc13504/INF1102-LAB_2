@@ -6,6 +6,7 @@ TAX_RATE = 0.1 # 10% tax rate
 user_input = 0
 current_total = 0
 error_count = 0
+tax_result = 0
 
 #Functions
 def get_valid_input():
@@ -23,7 +24,7 @@ def error_validation():
     print("Please input positive whole numbers only!")
 
 def process_delivery(new_total, user_input):
-    new_total += int(user_input)
+    new_total += user_input
     print("Current Inventory Count Is:" ,new_total)
     return new_total
     
@@ -32,7 +33,7 @@ def calculate_tax(amount):
     return tax
 
 def generate_report(total_units, error_count):
-    print(f"Total Units Processed: {total_units}\nNumber of Failed Entries: {error_count}\n ")
+    print(f"Total Units Processed: {total_units}\nNumber of Failed Entries: {error_count} ")
 
 
 while True:
@@ -40,46 +41,21 @@ while True:
     user_input = get_valid_input()
 
     if user_input == "quit":
-       generate_report (current_total, error_count)
        break
 
     elif user_input is None:
         error_validation()
         error_count += 1
-
+    
     else:
         current_total = process_delivery(current_total, user_input)
         tax_result = calculate_tax(user_input)
 
-    
+    if current_total > MAX_CAPACITY:
+        print ("You have exceeded 500 units!")
+        break
 
-
-
-
-    
-    
-
+generate_report (current_total, error_count)
+print(f"The tax is ${tax_result}")
 
     
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-    
-            
-
-
