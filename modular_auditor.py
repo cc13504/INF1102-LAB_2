@@ -2,6 +2,17 @@
 stock_quantity = 0
 error_count = 0
 
+
+#Functions
+def get_valid_input():
+
+
+
+def process_delivery(current_total, new_value):
+
+
+
+
 #Requesting user to input stock quantity until user types quit
 while True:
     user_input = input("Enter stock quantity or 'quit' to exit.\n")
