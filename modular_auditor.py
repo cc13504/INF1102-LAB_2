@@ -1,38 +1,44 @@
 #Create Stock Quantity and Error Count
 stock_quantity = 0
-error_count = 0
-
+user_input = 0
 
 #Functions
+
 def get_valid_input():
-
-
-
-def process_delivery(current_total, new_value):
-
-
-
-
-#Requesting user to input stock quantity until user types quit
-while True:
     user_input = input("Enter stock quantity or 'quit' to exit.\n")
 
-
     if user_input.lower() == "quit":
-     print("The total Units Processed is {} and number of Failed/Rejected Entries is {}. \n".format(stock_quantity, error_count) )
-     break
+        print("The total Units Processed is {} and number of Failed/Rejected Entries is {}. \n".format(stock_quantity, error_count) )
 
     if user_input.isdigit():
-        stock_quantity += int(user_input)
-        print("Current inventory count is:",int(stock_quantity))
-
-        if int(user_input) > 500: 
-             print("Alert! Total inventory has exceeded 500units!")
-             break     
+        process_delivery(user_input)
     
     else:
         print("Error! Please input positive whole numbers only!\n")
-        error_count += 1
+
+
+def process_delivery(user_input):
+    current_total = int(user_input)
+    new_value = current_total + int(user_input)
+
+    print(new_value)
+    
+def calculate_tax(amount):
+    return()
+
+def generate_report(stock_quantity, error_count):
+    return ()
+
+#Requesting user to input stock quantity until user types quit
+#Create Stock Quantity and Error Count
+
+#Requesting user to input stock quantity until user types quit
+while True:
+    
+    get_valid_input()
+
+    
+    
 
 
     
