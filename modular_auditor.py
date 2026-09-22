@@ -56,6 +56,6 @@ while True:
         break
 
 generate_report (current_total, error_count)
-print(f"The tax is ${tax_result}")
+
 
     
