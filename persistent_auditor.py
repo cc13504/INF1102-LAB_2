@@ -1,13 +1,13 @@
 #Global Contants
 MAX_CAPACITY = 500
 TAX_RATE = 0.1 # 10% tax rate
+INVENTORY_FILE = "inventory.txt"
 
 #local variables
 user_input = 0
 current_total = 0
 error_count = 0
 tax_result = 0
-Inventory_File = "inventory.txt"
 transaction = []
 
 
@@ -40,15 +40,14 @@ def generate_report(total_units, error_count):
 
 #print out to text file
 def load_inventory():
-    
-    return()
+    with open(INVENTORY_FILE, "a") as file:
+
+        file.writelines([str(item) + "\n" for item in transaction])
 
 #save input into list
 def save_inventory():
-
     transaction.append(user_input)
     return(transaction)
-
 
 
 while True:
@@ -64,6 +63,7 @@ while True:
     
     else:
         save_inventory()
+        load_inventory()
         current_total = process_delivery(current_total, user_input)
         tax_result = calculate_tax(user_input)
 
@@ -73,7 +73,7 @@ while True:
 
 
 generate_report (current_total, error_count)
-print(transaction)
+
 
 
 
