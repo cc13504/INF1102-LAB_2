@@ -7,6 +7,9 @@ user_input = 0
 current_total = 0
 error_count = 0
 tax_result = 0
+Inventory_File = "inventory.txt"
+transaction = []
+
 
 #Functions
 def get_valid_input():
@@ -35,6 +38,18 @@ def calculate_tax(amount):
 def generate_report(total_units, error_count):
     print(f"Total Units Processed: {total_units}\nNumber of Failed Entries: {error_count} ")
 
+#print out to text file
+def load_inventory():
+    
+    return()
+
+#save input into list
+def save_inventory():
+
+    transaction.append(user_input)
+    return(transaction)
+
+
 
 while True:
 
@@ -44,10 +59,11 @@ while True:
        break
 
     elif user_input is None:
-        error_validation()
-        error_count += 1
+       error_validation()
+       error_count += 1
     
     else:
+        save_inventory()
         current_total = process_delivery(current_total, user_input)
         tax_result = calculate_tax(user_input)
 
@@ -55,7 +71,12 @@ while True:
         print ("You have exceeded 500 units!")
         break
 
+
 generate_report (current_total, error_count)
+print(transaction)
+
+
+
 
 
 
