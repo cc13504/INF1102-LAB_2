@@ -14,56 +14,109 @@ error_count = 0
 tax_result = 0
 
 
-#Functions
+#class Product
+class Product:
+    def __init__(self,product_id, name, price, stock):
+        self.__product_id = product_id
+        self.__name = name
+        self.__price = price
+        self.__stock = stock
 
-def load_inventory():
-    try:
-        with open(INVENTORY_FILE, "r") as file:
+    def get_name(self):
+        return self.__name
+
+    def get_price(self):
+        return self.__price
+
+    def get_stock(self):
+        return self.__stock
+
+    def add_stock (self,quantity):
+        new_stock = self.__stock + quantity
+        if new_stock < 0:
+            print(f"Invalid! Stock should not fall below 0. Current stock is {self._stock}.")
+            return 
+        else:
+            self.__stock = new_stock
+
+    def product_information(self):
+        return  {"product_id" : self.__product_id,
+                "product_name" : self.__name,
+                "product_price": self.__price,
+                "product_stock" : self.__stock
+        }
+
+
+class Inventory:
+
+    def __init__(self):
+        self.inventory = {}
+
+    def add_product(self):
+
+        name = input("Enter the name of the new product:\n")
+
+        if not name:
+         print("Error: Product name cannot be empty.")
+         return
+    
+        if name in inventory:
+         print("Error: Product already exists.")
+         return
+
+        qty_in = input("Enter initial quantity: ").strip()
+
+        if qty_in.isdigit():
+            inventory[name] = int(qty_in)
+            print("Success: Product added.")
+        else:
+         print("Invalid quantity.")
+
+    def display_information(self):
+        inventory = {Product.product_information}
+        return inventory
+
+    def display_all_products(inventory):
+        print("\n--- Current Inventory List ---")
+        if not inventory:
+            print("The inventory is currently empty.")
+        else:
+            print("Product | Quantity")
+            for name, qty in inventory.items():
+                print(name + " | " + str(qty))
+
+
+class File_Handling:
+    def __init__(self):
+            pass
+    
+    def load_inventory():
+        try:
+         with open(INVENTORY_FILE, "r") as file:
             for line in file:
                 parts = line.strip().split(",")
                 if len(parts) == 2:
                     name, qty = parts[0], parts[1]
                     if qty.isdigit():
                         inventory[name] = int(qty)
-    except (FileNotFoundError, ValueError):
-        pass
-    return inventory
+        except (FileNotFoundError, ValueError):
+         pass
 
+        return inventory
 
-def save_inventory_to_file(inventory):
-    with open(INVENTORY_FILE, "w") as file:
-        for name, qty in inventory.items():
-            file.write(name + "," + str(qty) + "\n")
-
-#logic functions
-def display_all_products(inventory):
-    print("\n--- Current Inventory List ---")
-    if not inventory:
-        print("The inventory is currently empty.")
-    else:
-        print("Product | Quantity")
-        for name, qty in inventory.items():
-            print(name + " | " + str(qty))
-
-def add_product(inventory):
-    name = input("Enter the name of the new product: ").strip()
-    if not name:
-        print("Error: Product name cannot be empty.")
-        return
     
-    if name in inventory:
-        print("Error: Product already exists.")
-        return
+    def save_inventory_to_file(inventory):
+        with open(INVENTORY_FILE, "w") as file:
+            for name, qty in inventory.items():
+                file.write(name + "," + str(qty) + "\n")
 
-    qty_in = input("Enter initial quantity: ").strip()
-    if qty_in.isdigit():
-        inventory[name] = int(qty_in)
-        print("Success: Product added.")
-    else:
-        print("Invalid quantity.")
 
-def update_stock(inventory):
-    name = input("Enter the product name to update: ").strip()
+
+
+
+
+def update_stock(self, new_quantity):
+    name = input("Enter the product name to update: \n")
     if name not in inventory:
         print("Error: Product not found.")
         return
@@ -127,6 +180,8 @@ def main():
             break
         else:
             print("Invalid selection.")
+
+    
 
 if __name__ == "__main__":
     main()
